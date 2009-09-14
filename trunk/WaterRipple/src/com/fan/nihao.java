@@ -16,15 +16,15 @@ public class nihao extends Activity {
         setContentView(R.layout.main);
         LinearLayout v1 = (LinearLayout) findViewById(R.id.LinearLayout01);
         
-        final TransfomedViewWidget transfomedViewWidget = new TransfomedViewWidget(this);
-		v1.addView(transfomedViewWidget);
+        WaterViewWidget widget = new WaterViewWidget(this);
+		v1.addView(widget);
         
         Button leftButton = (Button) findViewById(R.id.Button01);
         
         leftButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-            	System.out.println("on clicking.....");
-            	transfomedViewWidget.start();
+            	//System.out.println("on clicking.....");
+            	//transfomedViewWidget.start();
             }
         });
     }
