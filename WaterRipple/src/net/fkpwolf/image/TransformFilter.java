@@ -145,7 +145,8 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
 //		outY = transformedSpace.centerY();
 		outY = 0;
 		float[] out = new float[2];
-
+		
+		long l1 = System.currentTimeMillis();
 		for (int y = 0; y < outHeight; y++) {
 			for (int x = 0; x < outWidth; x++) {
 				transformInverse(outX+x, outY+y, out);
@@ -174,6 +175,8 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
 			}
 			setRGB( dst, 0, y, transformedSpace.width(), 1, outPixels );
 		}
+		long l2 = System.currentTimeMillis();
+		System.out.println(">the nested for takes :" + (l2-l1) + "ms");
 		return dst;
 	}
 

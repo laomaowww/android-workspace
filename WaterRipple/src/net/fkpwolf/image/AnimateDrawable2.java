@@ -17,7 +17,6 @@
 package net.fkpwolf.image;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -25,31 +24,25 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Transformation;
 
-public class AnimateDrawable extends ProxyDrawable {
+public class AnimateDrawable2 extends ProxyDrawable {
     
-	WaterFilter f = new WaterFilter();
 	Bitmap bm, dst;
+	waterHandle handle;
     private Animation mAnimation;
     private Transformation mTransformation = new Transformation();
 
-    public AnimateDrawable(Drawable target) {
+    public AnimateDrawable2(Drawable target) {
         super(target);
     }
     
-    public AnimateDrawable(Drawable target, Animation animation, Bitmap oldmap) {
+    public AnimateDrawable2(Drawable target, Animation animation, Bitmap oldmap) {
         super(target);
-        f.setCentreX(0.73399997F);
-		f.setCentreY(0.465F);
-		f.setAmplitude(1.0F);
-		//f.setPhase(4.34587F);
-		f.setPhase(1);
-		f.setRadius(77.92F);
-		f.setWavelength(17.78F);
 		
 		bm = oldmap;
 		dst = Bitmap.createBitmap(bm.getWidth(), bm.getHeight(), bm
 				.getConfig());
         mAnimation = animation;
+        handle = new waterHandle(oldmap);
     }
     
     public Animation getAnimation() {
@@ -72,36 +65,17 @@ public class AnimateDrawable extends ProxyDrawable {
     public void draw(Canvas canvas) {
         Drawable dr = getProxy();
         if (dr != null) {
-            //int sc = canvas.save();
             Animation anim = mAnimation;
             if (anim != null) {
                 anim.getTransformation(
                                     AnimationUtils.currentAnimationTimeMillis(),
                                     mTransformation);
-                //canvas.concat(mTransformation.getMatrix());
-                //float[] values = new float[9];
-                //for (int i = 0; i< values.length; i++){
-                //	System.out.println(values[i]);
-                //}
-				//mTransformation.getMatrix().getValues(values);
                 
-                float p = f.getPhase();
-                p++;
-                f.setPhase(p);
+                //f.filter(bm, dst);
                 
-                System.out.println("------------");
-                long l1 = System.currentTimeMillis();
-                f.filter(bm, dst);
-                long l2 = System.currentTimeMillis();
-                System.out.println("whole filter takes:" + (l2 -l1) + "ms");
                 Paint paint = new Paint();
                 canvas.drawBitmap(dst, canvas.getMatrix(), paint);//FIXME why need so many parameters
-                long l3 = System.currentTimeMillis();
-                //System.out.println("paint takes:" + (l3 -l2) + "ms");
             }
-            //dr.draw(canvas);
-            //canvas.restoreToCount(sc);
         }
     }
 }
-    

@@ -272,6 +272,7 @@ public class ImageMath {
 	 * @return the interpolated value
 	 */
 	public static int bilinearInterpolate(float x, float y, int nw, int ne, int sw, int se) {
+		//long l1 = System.currentTimeMillis();
 		float m0, m1;
 		int a0 = (nw >> 24) & 0xff;
 		int r0 = (nw >> 16) & 0xff;
@@ -309,6 +310,8 @@ public class ImageMath {
 		m1 = cx * b2 + x * b3;
 		int b = (int)(cy * m0 + y * m1);
 
+		//long l2 = System.currentTimeMillis();
+		//System.out.println("bilinearInterpolate takes: "+ (l2-l1) + "ms");
 		return (a << 24) | (r << 16) | (g << 8) | b;
 	}
 

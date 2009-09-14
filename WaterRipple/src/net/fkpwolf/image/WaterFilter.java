@@ -167,22 +167,26 @@ public class WaterFilter extends TransformFilter {
 	}
 	
 	protected void transformInverse(int x, int y, float[] out) {
+		
 		float dx = x-icentreX;
 		float dy = y-icentreY;
 		float distance2 = dx*dx + dy*dy;
+		//out[0] = x; out[1]= y; return;
+		
 		if (distance2 > radius2) {
 			out[0] = x;
 			out[1] = y;
 		} else {
 			float distance = (float)Math.sqrt(distance2);
-			float amount = amplitude * (float)Math.sin(distance / wavelength * ImageMath.TWO_PI - phase);
+			//float amount = amplitude * (float)Math.sin(distance / wavelength * ImageMath.TWO_PI - phase);
+			float amount = amplitude * (float)Math.sin(distance / 2.83 - phase);
 			amount *= (radius-distance)/radius;
 			if ( distance != 0 )
 				amount *= wavelength/distance;
 			out[0] = x + dx*amount; 
-			//t[0] = x; out[1]= y; //keep original
 			out[1] = y + dy*amount;
 		}
+		
 	}
 
 	public String toString() {
