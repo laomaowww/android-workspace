@@ -42,7 +42,8 @@ public class AnimateDrawable2 extends ProxyDrawable {
 		dst = Bitmap.createBitmap(bm.getWidth(), bm.getHeight(), bm
 				.getConfig());
         mAnimation = animation;
-        handle = new waterHandle(oldmap);
+        handle = new waterHandle(oldmap, dst);
+        //handle.disturb(50, 50);
     }
     
     public Animation getAnimation() {
@@ -72,10 +73,15 @@ public class AnimateDrawable2 extends ProxyDrawable {
                                     mTransformation);
                 
                 //f.filter(bm, dst);
+                handle.run1();
                 
                 Paint paint = new Paint();
-                canvas.drawBitmap(dst, canvas.getMatrix(), paint);//FIXME why need so many parameters
+                canvas.drawBitmap(dst, 0, 0, paint);//FIXME why need so many parameters
             }
         }
     }
+
+	public void click(float x, float y) {
+		handle.disturb((int)x, (int)y);
+	}
 }

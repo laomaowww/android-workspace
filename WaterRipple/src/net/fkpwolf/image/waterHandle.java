@@ -13,18 +13,19 @@ public class waterHandle  {
 	
 
 
-    private Bitmap oldmap;
+    private Bitmap oldmap,dest;
 
-	public waterHandle(Bitmap oldmap) {
+	public waterHandle(Bitmap oldmap, Bitmap dest) {
 		this.oldmap = oldmap;
+		this.dest = dest;
 		init();
 	}
 
 	String str;
     int width,height,hwidth,hheight;
-    MemoryImageSource source;
-    Image image, offImage;
-    Graphics offGraphics;
+    //MemoryImageSource source;
+    //Image image, offImage;
+    //Graphics offGraphics;
     int i,a,b;
     int MouseX,MouseY;
     int fps,delay,size;
@@ -74,7 +75,7 @@ public class waterHandle  {
 //        pg.grabPixels();
 //        } catch (InterruptedException e) {}
 
-      oldmap.getPixels(texture, 0, width, 0, 0, width, height);
+      oldmap.getPixels(ripple, 0, width, 0, 0, width, height);
 //      source = new MemoryImageSource(width, height, ripple, 0, width);
 //      source.setAnimated(true);
 //      source.setFullBufferUpdates(true);
@@ -88,23 +89,24 @@ public class waterHandle  {
 //	disturb(e.getX(),e.getY());
 //    }
 
-    public void run() {
-      while (Thread.currentThread() == animatorThread) {
+    public void run1() {
+      //while (Thread.currentThread() == animatorThread) {
         newframe();
-        source.newPixels();
-        offGraphics.drawImage(image,0,0,width,height,null);
-        repaint();
+        dest.setPixels(ripple, 0, width, 0, 0, width, height);
+        //source.newPixels();
+        //offGraphics.drawImage(image,0,0,width,height,null);
+        //repaint();
 
-      }
+      //}
     }
 
-    public void paint(Graphics g) {
-      update(g);
-    }
+//    public void paint(Graphics g) {
+//      update(g);
+//    }
 
-    public void update(Graphics g) {
-      g.drawImage(offImage,0,0,this);
-    }
+//    public void update(Graphics g) {
+//      g.drawImage(offImage,0,0,this);
+//    }
 
     public void disturb(int dx, int dy) {
       for (int j=dy-riprad;j<dy+riprad;j++) {
