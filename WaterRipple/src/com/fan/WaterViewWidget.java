@@ -1,18 +1,11 @@
 package com.fan;
 
-import net.fkpwolf.image.AnimateDrawable;
 import net.fkpwolf.image.AnimateDrawable2;
-import net.fkpwolf.image.WaterFilter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PointF;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
