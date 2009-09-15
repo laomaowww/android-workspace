@@ -14,6 +14,7 @@ import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -34,7 +35,7 @@ public class WaterViewWidget extends View {
         dr.setBounds(0, 0, dr.getIntrinsicWidth(), dr.getIntrinsicHeight());
         
         an = new TranslateAnimation(0, 100, 0, 200);
-        an.setDuration(500);
+        an.setDuration(20);
         an.setRepeatCount(-1);
         an.initialize(10, 10, 10, 10);
         
@@ -51,6 +52,13 @@ public class WaterViewWidget extends View {
          mDrawable.draw(canvas);
          invalidate();
      }
+	 @Override
+     public boolean onTouchEvent(MotionEvent event) {
+         float x = event.getX();
+         float y = event.getY();
+         mDrawable.click(x, y);
+		return true;
+	 }
 
 	public void start() {
 		an.startNow();
