@@ -1,5 +1,8 @@
 package net.fkpwolf.image;
 
+import java.nio.Buffer;
+import java.nio.IntBuffer;
+
 import android.graphics.Bitmap;
 /*
  * Name:     Water
@@ -35,6 +38,7 @@ public class waterHandle  {
     int ripple[];
     int oldind,newind,mapind;
     int riprad;
+    IntBuffer dst;
     //Image im;
 
     Thread animatorThread;
@@ -83,6 +87,7 @@ public class waterHandle  {
      // image = createImage(source);
       //offImage = createImage(width, height);
      // offGraphics = offImage.getGraphics();
+      dst = IntBuffer.allocate(width*height);
     }
 
 //    public void mouseMoved(MouseEvent e) {
@@ -92,7 +97,11 @@ public class waterHandle  {
     public void run1() {
       //while (Thread.currentThread() == animatorThread) {
         newframe();
+        //dst.put(ripple);dst.rewind();
         dest.setPixels(ripple, 0, width, 0, 0, width, height);
+        //dest.copyPixelsFromBuffer(dst);
+        
+        
         //source.newPixels();
         //offGraphics.drawImage(image,0,0,width,height,null);
         //repaint();
