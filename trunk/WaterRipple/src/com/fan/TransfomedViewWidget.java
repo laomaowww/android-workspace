@@ -37,8 +37,7 @@ public class TransfomedViewWidget extends View {
         an.setRepeatCount(-1);
         an.initialize(10, 10, 10, 10);
         
-		Bitmap bm = BitmapFactory.decodeResource(getResources(),
-		R.drawable.flower);
+		Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.flower);
         mDrawable = new AnimateDrawable(dr, an, bm);
         //an.startNow();
        

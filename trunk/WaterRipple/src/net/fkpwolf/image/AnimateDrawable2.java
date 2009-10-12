@@ -75,8 +75,12 @@ public class AnimateDrawable2 extends ProxyDrawable {
                 //f.filter(bm, dst);
                 handle.run1();
                 
+                int[] out = handle.getOut();
+                
                 Paint paint = new Paint();
-                canvas.drawBitmap(dst, 0, 0, paint);//FIXME why need so many parameters
+                //canvas.drawBitmap(dst, 0, 0, paint);//FIXME why need so many parameters
+                canvas.drawBitmap(out, 0, bm.getWidth(), 0, 0, 
+                		bm.getWidth(), bm.getHeight(), false, paint);
             }
         }
     }

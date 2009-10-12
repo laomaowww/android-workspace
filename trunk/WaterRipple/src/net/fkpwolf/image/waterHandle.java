@@ -98,7 +98,7 @@ public class waterHandle  {
       //while (Thread.currentThread() == animatorThread) {
         newframe();
         //dst.put(ripple);dst.rewind();
-        dest.setPixels(ripple, 0, width, 0, 0, width, height);
+        //dest.setPixels(ripple, 0, width, 0, 0, width, height);
         //dest.copyPixelsFromBuffer(dst);
         
         
@@ -161,6 +161,11 @@ public class waterHandle  {
         }
       }
     }
+
+	public int[] getOut() {
+		// TODO Auto-generated method stub
+		return ripple;
+	}
 
 }
 
